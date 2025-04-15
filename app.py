@@ -68,7 +68,7 @@ def logout():
 def welcome():
     # Pass user data to the template if needed
     user_info = session.get('user')
-    return render_template('components/welcome/welcome.html', user=user_info)
+    return render_template('welcome.html', user=user_info)
 
 # --- Add routes for other components here, applying @login_required ---
 # Example:
@@ -100,4 +100,4 @@ def merchandising_solicitud():
 if __name__ == '__main__':
     # Use 0.0.0.0 to be accessible externally (needed for Render)
     # Debug=True is helpful during development, REMOVE for production
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True) 
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
