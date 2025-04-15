@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Merchandising - Dashboard</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/components.css">
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Header placeholder -->
+        <div id="headerContainer"></div>
+
+        <!-- Sidebar placeholder -->
+        <div id="sidebarContainer"></div>
+
+        <main class="main-content">
+            <div class="sistema-inventario">
+                <h1>Solicitud de Merchandising</h1>
+                
+                <div id="mainContent">
+                    <div class="form-container">
+                        <form id="formSolicitud">
+                            <!-- Fila de 2 columnas: Solicitante y Grupo -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="solicitante">Solicitante (automático)</label>
+                                    <input type="text" id="solicitante" name="solicitante" readonly required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="grupo">Grupo (automático)</label>
+                                    <select id="grupo" name="grupo" required>
+                                        <option value="" disabled selected>Seleccione un grupo</option>
+                                        <option value="kossodo">Kossodo</option>
+                                        <option value="kossomet">Kossomet</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Fila de 2 columnas: RUC y Fecha de visita -->
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ruc">RUC del cliente</label>
+                                    <input type="text" id="ruc" name="ruc" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fechaVisita">Fecha de visita</label>
+                                    <input type="date" id="fechaVisita" name="fechaVisita" required>
+                                </div>
+                            </div>
+
+                            <!-- Cantidad de packs (fila única) -->
+                            <div class="form-group">
+                                <label for="cantidadPacks">Cantidad de packs</label>
+                                <input type="number" id="cantidadPacks" name="cantidadPacks" min="1" required>
+                            </div>
+
+                            <!-- Productos disponibles con grid de checkboxes -->
+                            <div class="form-group">
+                                <label>Productos disponibles:</label>
+                                <div id="checkboxContainer">
+                                    <!-- Sección para Cliente Normal -->
+                                    <div class="product-category">
+                                        <h4>Cliente Normal</h4>
+                                        <div id="productosNormalesContainer" class="checkbox-grid">
+                                            <!-- Checkboxes para productos normales se llenarán aquí -->
+                                        </div>
+                                    </div>
+
+                                    <!-- Sección para Cliente Ejecutivo -->
+                                    <div class="product-category">
+                                        <h4>Cliente Ejecutivo</h4>
+                                        <div id="productosEjecutivosContainer" class="checkbox-grid">
+                                            <!-- Checkboxes para productos ejecutivos se llenarán aquí -->
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Mensaje si no hay productos -->
+                                    <p id="noProductsMessage" class="no-products" style="display: none;">No hay productos disponibles para la cantidad ingresada.</p>
+                                </div>
+                            </div>
+
+                            <!-- Catálogos (fila única) -->
+                            <div class="form-group">
+                                <label for="catalogos">Catálogos (opcional)</label>
+                                <textarea id="catalogos" name="catalogos" rows="2" 
+                                    placeholder="Por Ejemplo: Binder, Esco, Atago"></textarea>
+                            </div>
+
+                            <button type="submit" id="btnEnviarSolicitud">Enviar Solicitud</button>
+                        </form>
+
+                        <div id="mensaje" class="error-message"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load scripts in order -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/authCheck.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/loadSidebar.js"></script>
+    <script src="../../js/loadHeader.js"></script>
+    <script src="../../js/search.js"></script>
+    <script>
+        // URL base de la API
+        const API_BASE_URL = 'https://inventario-kssd.onrender.com';
+        let availableQuantities = {};
+        let dynamicColumns = [];
+
+        // Autocompletar el campo solicitante y grupo con el usuario logueado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obtener datos del usuario actual de la sesión
+            const userData = JSON.parse(sessionStorage.getItem('userData'));
+            
+            if (userData && userData.nombre) {
+                // Autocompletar el campo solicitante
+                const solicitanteInput = document.getElementById('solicitante');
+                solicitanteInput.value = userData.nombre;
+                solicitanteInput.readOnly = true;
+                
+                // Autocompletar el campo grupo y cargar productos
+                if (userData.grupo) {
+                    const grupoSelect = document.getElementById('grupo');
+                    // Seleccionar la opción correspondiente al grupo del usuario
+                    for (let i = 0; i < grupoSelect.options.length; i++) {
+                        if (grupoSelect.options[i].value === userData.grupo) {
+                            grupoSelect.selectedIndex = i;
+                            break;
+                        }
+                    }
+                    // Deshabilitar el selector para que no se pueda cambiar
+                    grupoSelect.disabled = true;
+                    
+                    // Cargar automáticamente los productos disponibles para este grupo
+                    cargarStock(userData.grupo);
+                }
+            }
+        });
+
+        function renderCheckboxes() {
+            const containerNormal = document.getElementById('productosNormalesContainer');
+            const containerEjecutivo = document.getElementById('productosEjecutivosContainer');
+            const noProductsMsg = document.getElementById('noProductsMessage');
+            
+            containerNormal.innerHTML = ''; // Limpiar contenedor normal
+            containerEjecutivo.innerHTML = ''; // Limpiar contenedor ejecutivo
+            noProductsMsg.style.display = 'none'; // Ocultar mensaje por defecto
+
+            const cantidadPacks = parseInt(document.getElementById('cantidadPacks').value) || 0;
+
+            let htmlNormal = '';
+            let htmlEjecutivo = '';
+            let productsAvailable = false; // Flag para saber si hay algún producto
+
+            dynamicColumns.forEach(col => {
+                const stock = availableQuantities[col] || 0;
+                if (stock >= cantidadPacks) {
+                    productsAvailable = true; // Se encontró al menos un producto
+                    let baseName = col.replace(/^merch_/, '');
+                    let labelText = '';
+                    let isEjecutivo = baseName.endsWith('_eje');
+
+                    if (isEjecutivo) {
+                        baseName = baseName.slice(0, -4); // Quitar '_eje'
+                        labelText = baseName.replace(/_/g, ' ');
+                        labelText = labelText.charAt(0).toUpperCase() + labelText.slice(1);
+                        // No añadir [ Ejecutivo ] aquí, ya está bajo la sección correcta
+                        htmlEjecutivo += `
+                            <div class="form-check">
+                                <input type="checkbox" value="${col}" id="${col}">
+                                <label for="${col}">${labelText}</label>
+                            </div>
+                        `;
+                    } else {
+                        labelText = baseName.replace(/_/g, ' ');
+                        labelText = labelText.charAt(0).toUpperCase() + labelText.slice(1);
+                        htmlNormal += `
+                            <div class="form-check">
+                                <input type="checkbox" value="${col}" id="${col}">
+                                <label for="${col}">${labelText}</label>
+                            </div>
+                        `;
+                    }
+                }
+            });
+
+            // Llenar los contenedores
+            containerNormal.innerHTML = htmlNormal || '<p class="no-products-category">No hay productos normales disponibles.</p>';
+            containerEjecutivo.innerHTML = htmlEjecutivo || '<p class="no-products-category">No hay productos ejecutivos disponibles.</p>';
+
+            // Mostrar mensaje general si NINGÚN producto está disponible
+            if (!productsAvailable && cantidadPacks > 0) {
+                containerNormal.innerHTML = ''; // Ocultar mensajes específicos de categoría
+                containerEjecutivo.innerHTML = '';
+                noProductsMsg.style.display = 'block'; // Mostrar mensaje general
+            } else if (!productsAvailable && cantidadPacks === 0) {
+                 containerNormal.innerHTML = '<p class="no-products-category">Ingrese la cantidad de packs.</p>';
+                 containerEjecutivo.innerHTML = '';
+                 noProductsMsg.style.display = 'none';
+            }
+        }
+
+        function cargarStock(grupo) {
+            fetch(API_BASE_URL + '/api/stock?grupo=' + grupo)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('checkboxContainer').innerHTML = 
+                            '<p class="error-message">' + data.error + '</p>';
+                        return;
+                    }
+                    availableQuantities = {};
+                    dynamicColumns = [];
+                    Object.keys(data).forEach(k => {
+                        if (k.startsWith('merch_')) {
+                            const qty = parseInt(data[k]) || 0;
+                            if (qty > 0) { // Solo considerar productos con stock > 0
+                                availableQuantities[k] = qty;
+                                dynamicColumns.push(k);
+                            }
+                        }
+                    });
+                    // Llamar a renderCheckboxes DESPUÉS de procesar los datos
+                    renderCheckboxes(); 
+                })
+                .catch(err => {
+                    console.error(err);
+                    // Manejar error de carga
+                    document.getElementById('productosNormalesContainer').innerHTML = '<p class="error-message">Error al cargar productos.</p>';
+                    document.getElementById('productosEjecutivosContainer').innerHTML = '';
+                    document.getElementById('noProductsMessage').style.display = 'none';
+                });
+        }
+
+        document.getElementById('grupo').addEventListener('change', function() {
+            const grupo = this.value;
+            if (grupo) {
+                cargarStock(grupo);
+            }
+        });
+
+        document.getElementById('cantidadPacks').addEventListener('input', function() {
+            renderCheckboxes();
+        });
+
+        document.getElementById('formSolicitud').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const solicitante = document.getElementById('solicitante').value.trim();
+            const grupo = document.getElementById('grupo').value;
+            const ruc = document.getElementById('ruc').value.trim();
+            const fechaVisita = document.getElementById('fechaVisita').value;
+            const cantidadPacks = parseInt(document.getElementById('cantidadPacks').value) || 0;
+            const catalogos = document.getElementById('catalogos').value.trim();
+            const msg = document.getElementById('mensaje');
+
+            if (!solicitante || !grupo || !ruc || !fechaVisita || cantidadPacks < 1) {
+                alert('Complete todos los campos obligatorios y asegúrese de que la cantidad de packs sea mayor a 0.');
+                return;
+            }
+
+            // Buscar checkboxes en AMBOS contenedores
+            const checksNormal = document.querySelectorAll('#productosNormalesContainer input[type="checkbox"]');
+            const checksEjecutivo = document.querySelectorAll('#productosEjecutivosContainer input[type="checkbox"]');
+            
+            const productosSeleccionados = [];
+            checksNormal.forEach(ch => {
+                if (ch.checked) {
+                    productosSeleccionados.push(ch.value);
+                }
+            });
+            checksEjecutivo.forEach(ch => {
+                if (ch.checked) {
+                    productosSeleccionados.push(ch.value);
+                }
+            });
+
+            if (productosSeleccionados.length === 0) {
+                alert('Seleccione al menos un producto disponible.');
+                return;
+            }
+
+            const payload = {
+                solicitante: document.getElementById('solicitante').value.trim(),
+                grupo: document.getElementById('grupo').value,
+                ruc: document.getElementById('ruc').value.trim(),
+                fecha_visita: document.getElementById('fechaVisita').value,
+                cantidad_packs: parseInt(document.getElementById('cantidadPacks').value) || 0,
+                productos: productosSeleccionados, // Usar la lista combinada
+                catalogos: document.getElementById('catalogos').value.trim()
+            };
+
+            fetch(API_BASE_URL + '/api/solicitud', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(r => r.json())
+            .then(res => {
+                if (res.error) {
+                    msg.innerHTML = `<div class="error-message">${res.error}</div>`;
+                } else {
+                    msg.innerHTML = `<div class="success-message">¡Éxito! Solicitud enviada correctamente. ID: ${res.id}</div>`;
+                    document.getElementById('formSolicitud').reset();
+                    // Limpiar ambos contenedores y volver a renderizar (mostrará mensajes de "ingrese cantidad")
+                    renderCheckboxes(); 
+                    // Opcional: recargar stock si el grupo no se resetea
+                    // const grupoSeleccionado = document.getElementById('grupo').value;
+                    // if (grupoSeleccionado) cargarStock(grupoSeleccionado);
+                }
+            })
+            .catch(err => {
+                msg.innerHTML = `<div class="error-message">Error: ${err}</div>`;
+            });
+        });
+    </script>
+</body>
+</html>

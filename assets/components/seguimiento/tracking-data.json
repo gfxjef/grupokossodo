@@ -1,0 +1,342 @@
+{
+  "shipments": [
+    {
+      "trackingNumber": "WYB319740961",
+      "customer": "Jefferson Teófilo Portillo",
+      "ruc": "20563429284",
+      "address": "Jr los rocos 2456 2456 Dpto. 2456 SAN JUAN DE LURIGANCHO - LIMA",
+      "deliveryType": "ENTREGA FAMILIAR DIRECTO",
+      "estimatedDeliveryDate": "2023-03-05",
+      "currentStatus": "Entregado",
+      "currentStatusId": 5,
+      "registrationDate": "2023-03-04 15:59:41",
+      "lastUpdateDate": "2023-03-05 18:35:28",
+      "hasPhotos": false,
+      "hasDocuments": true,
+      "steps": [
+        {
+          "id": 1,
+          "icon": "fa-box",
+          "label": "OC Entregada",
+          "status": "completed",
+          "date": "2023-03-04 15:59:41",
+          "details": "Agencia: G4\nDN:LIM -> Hosio:G4 (Terrestre) PV: X0305, DR - 1585203-1585203 - (PO(X03172934))"
+        },
+        {
+          "id": 2,
+          "icon": "fa-warehouse",
+          "label": "Entregado a Despacho",
+          "status": "completed",
+          "date": "2023-03-05 02:29:54",
+          "details": "Agencia: G4\nG4-LIMESTE (G4-KAYRO)"
+        },
+        {
+          "id": 3,
+          "icon": "fa-clipboard-check",
+          "label": "Confirmación de Ruta",
+          "status": "completed",
+          "date": "2023-03-05 06:27:01",
+          "details": "Agencia: G4\nETIQ:4 -- Destino:LIMD - 1585203 - (PO(X03172934))"
+        },
+        {
+          "id": 4,
+          "icon": "fa-truck",
+          "label": "En Ruta",
+          "status": "completed",
+          "date": "2023-03-05 18:15:28",
+          "details": "Entrega Familiar Directo\nAgencia: G4\nConductor: Juan Pérez\nVehículo: ABC-123"
+        },
+        {
+          "id": 5,
+          "icon": "fa-check-circle",
+          "label": "Entregado",
+          "status": "completed",
+          "date": "2023-03-05 18:35:28",
+          "details": "ENTREGAMOS TU PEDIDO\nEntrega Familiar Directo\nRecibido por: Jefferson Teófilo Portillo"
+        }
+      ],
+      "documents": [
+        {
+          "id": 1,
+          "name": "Factura_F001-1234.pdf",
+          "type": "Factura",
+          "date": "2023-03-04",
+          "downloadUrl": "#"
+        },
+        {
+          "id": 2,
+          "name": "Guia_Remision_R001-5678.pdf",
+          "type": "Guía de Remisión",
+          "date": "2023-03-04",
+          "downloadUrl": "#"
+        }
+      ]
+    },
+    {
+      "trackingNumber": "TEST123456",
+      "customer": "María Rodríguez Gómez",
+      "ruc": "10456789012",
+      "address": "Av. Las Palmeras 789, Miraflores, LIMA",
+      "deliveryType": "ENTREGA DIRECTA",
+      "estimatedDeliveryDate": "2023-03-08",
+      "currentStatus": "En Ruta",
+      "currentStatusId": 4,
+      "registrationDate": "2023-03-07 09:15:22",
+      "lastUpdateDate": "2023-03-07 14:45:10",
+      "hasPhotos": false,
+      "hasDocuments": true,
+      "steps": [
+        {
+          "id": 1,
+          "icon": "fa-box",
+          "label": "OC Entregada",
+          "status": "completed",
+          "date": "2023-03-07 09:15:22",
+          "details": "Agencia: G4\nDN:LIM -> Hosio:G4 (Terrestre) PV: X0307, DR - 1685204-1685204 - (PO(X03184935))"
+        },
+        {
+          "id": 2,
+          "icon": "fa-warehouse",
+          "label": "Entregado a Despacho",
+          "status": "completed",
+          "date": "2023-03-07 11:20:30",
+          "details": "Agencia: G4\nG4-LIMOESTE (G4-PELAYO)"
+        },
+        {
+          "id": 3,
+          "icon": "fa-clipboard-check",
+          "label": "Confirmación de Ruta",
+          "status": "completed",
+          "date": "2023-03-07 13:05:45",
+          "details": "Agencia: G4\nETIQ:6 -- Destino:LIMD - 1685204 - (PO(X03184935))"
+        },
+        {
+          "id": 4,
+          "icon": "fa-truck",
+          "label": "En Ruta",
+          "status": "active",
+          "date": "2023-03-07 14:45:10",
+          "details": "Entrega Directa\nAgencia: G4\nConductor: Carlos Martínez\nVehículo: XYZ-456\nHora estimada de llegada: 16:30"
+        },
+        {
+          "id": 5,
+          "icon": "fa-check-circle",
+          "label": "Entregado",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        }
+      ],
+      "documents": [
+        {
+          "id": 1,
+          "name": "Factura_F001-5678.pdf",
+          "type": "Factura",
+          "date": "2023-03-07",
+          "downloadUrl": "#"
+        },
+        {
+          "id": 2,
+          "name": "Guia_Remision_R001-8901.pdf",
+          "type": "Guía de Remisión",
+          "date": "2023-03-07",
+          "downloadUrl": "#"
+        }
+      ]
+    },
+    {
+      "trackingNumber": "EXP789012",
+      "customer": "Roberto Sánchez Torres",
+      "ruc": "20987654321",
+      "address": "Calle Las Flores 456, Surco, LIMA",
+      "deliveryType": "ENTREGA COMERCIAL",
+      "estimatedDeliveryDate": "2023-03-10",
+      "currentStatus": "Confirmación de Ruta",
+      "currentStatusId": 3,
+      "registrationDate": "2023-03-08 10:30:15",
+      "lastUpdateDate": "2023-03-08 16:20:35",
+      "hasPhotos": false,
+      "hasDocuments": true,
+      "steps": [
+        {
+          "id": 1,
+          "icon": "fa-box",
+          "label": "OC Entregada",
+          "status": "completed",
+          "date": "2023-03-08 10:30:15",
+          "details": "Agencia: G4\nDN:LIM -> Hosio:G4 (Terrestre) PV: X0308, DR - 1785205-1785205 - (PO(X03196936))"
+        },
+        {
+          "id": 2,
+          "icon": "fa-warehouse",
+          "label": "Entregado a Despacho",
+          "status": "completed",
+          "date": "2023-03-08 13:45:20",
+          "details": "Agencia: G4\nG4-LIMSUR (G4-ORLANDO)"
+        },
+        {
+          "id": 3,
+          "icon": "fa-clipboard-check",
+          "label": "Confirmación de Ruta",
+          "status": "active",
+          "date": "2023-03-08 16:20:35",
+          "details": "Agencia: G4\nETIQ:8 -- Destino:LIMD - 1785205 - (PO(X03196936))\nProgramado para entrega mañana"
+        },
+        {
+          "id": 4,
+          "icon": "fa-truck",
+          "label": "En Ruta",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        },
+        {
+          "id": 5,
+          "icon": "fa-check-circle",
+          "label": "Entregado",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        }
+      ],
+      "documents": [
+        {
+          "id": 1,
+          "name": "Factura_F001-9012.pdf",
+          "type": "Factura",
+          "date": "2023-03-08",
+          "downloadUrl": "#"
+        }
+      ]
+    },
+    {
+      "trackingNumber": "SHP345678",
+      "customer": "Ana Luisa Gómez Morales",
+      "ruc": "10765432109",
+      "address": "Jr. Los Pinos 789, San Borja, LIMA",
+      "deliveryType": "ENTREGA COMERCIAL",
+      "estimatedDeliveryDate": "2023-03-09",
+      "currentStatus": "Entregado a Despacho",
+      "currentStatusId": 2,
+      "registrationDate": "2023-03-08 14:25:10",
+      "lastUpdateDate": "2023-03-08 17:40:22",
+      "hasPhotos": false,
+      "hasDocuments": true,
+      "steps": [
+        {
+          "id": 1,
+          "icon": "fa-box",
+          "label": "OC Entregada",
+          "status": "completed",
+          "date": "2023-03-08 14:25:10",
+          "details": "Agencia: G4\nDN:LIM -> Hosio:G4 (Terrestre) PV: X0308, DR - 1885206-1885206 - (PO(X03208937))"
+        },
+        {
+          "id": 2,
+          "icon": "fa-warehouse",
+          "label": "Entregado a Despacho",
+          "status": "active",
+          "date": "2023-03-08 17:40:22",
+          "details": "Agencia: G4\nG4-LIMESTE (G4-VICTOR)\nPrepación para despacho en proceso"
+        },
+        {
+          "id": 3,
+          "icon": "fa-clipboard-check",
+          "label": "Confirmación de Ruta",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        },
+        {
+          "id": 4,
+          "icon": "fa-truck",
+          "label": "En Ruta",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        },
+        {
+          "id": 5,
+          "icon": "fa-check-circle",
+          "label": "Entregado",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        }
+      ],
+      "documents": [
+        {
+          "id": 1,
+          "name": "Factura_F001-3456.pdf",
+          "type": "Factura",
+          "date": "2023-03-08",
+          "downloadUrl": "#"
+        },
+        {
+          "id": 2,
+          "name": "Guia_Remision_R001-7890.pdf",
+          "type": "Guía de Remisión",
+          "date": "2023-03-08",
+          "downloadUrl": "#"
+        }
+      ]
+    },
+    {
+      "trackingNumber": "ORD234567",
+      "customer": "Jorge Luis Mendoza Pérez",
+      "ruc": "20123456789",
+      "address": "Av. Arequipa 1234, Lince, LIMA",
+      "deliveryType": "ENTREGA FAMILIAR",
+      "estimatedDeliveryDate": "2023-03-11",
+      "currentStatus": "OC Entregada",
+      "currentStatusId": 1,
+      "registrationDate": "2023-03-08 16:05:30",
+      "lastUpdateDate": "2023-03-08 16:05:30",
+      "hasPhotos": false,
+      "hasDocuments": false,
+      "steps": [
+        {
+          "id": 1,
+          "icon": "fa-box",
+          "label": "OC Entregada",
+          "status": "active",
+          "date": "2023-03-08 16:05:30",
+          "details": "Agencia: G4\nDN:LIM -> Hosio:G4 (Terrestre) PV: X0308, DR - 1985207-1985207 - (PO(X03220938))\nPendiente verificación de stock"
+        },
+        {
+          "id": 2,
+          "icon": "fa-warehouse",
+          "label": "Entregado a Despacho",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        },
+        {
+          "id": 3,
+          "icon": "fa-clipboard-check",
+          "label": "Confirmación de Ruta",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        },
+        {
+          "id": 4,
+          "icon": "fa-truck",
+          "label": "En Ruta",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        },
+        {
+          "id": 5,
+          "icon": "fa-check-circle",
+          "label": "Entregado",
+          "status": "pending",
+          "date": "",
+          "details": ""
+        }
+      ],
+      "documents": []
+    }
+  ]
+}

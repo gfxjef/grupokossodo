@@ -1,0 +1,163 @@
+{
+    "consumibleEnStock": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra",
+          "icon": "fa-box"
+        },
+        {
+          "orden": 2,
+          "etapa": "Trabajando pedido",
+          "icon": "fa-tools"
+        },
+        {
+          "orden": 3,
+          "etapa": "Proceso de programación",
+          "icon": "fa-clipboard-check"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Camino",
+          "icon": "fa-truck"
+        },
+        {
+          "orden": 5,
+          "etapa": "Entregado",
+          "icon": "fa-check-circle"
+        }
+      ]
+    },
+    "productoEnStock": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra",
+          "icon": "fa-box"
+        },
+        {
+          "orden": 2,
+          "etapa": "En Almacén",
+          "icon": "fa-warehouse"
+        },
+        {
+          "orden": 3,
+          "etapa": "Proceso de control de calidad",
+          "icon": "fa-tasks"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Embalaje",
+          "icon": "fa-box-open"
+        },
+        {
+          "orden": 5,
+          "etapa": "Proceso de programación",
+          "icon": "fa-clipboard-check"
+        },
+        {
+          "orden": 6,
+          "etapa": "En Camino",
+          "icon": "fa-truck"
+        },
+        {
+          "orden": 7,
+          "etapa": "Entregado",
+          "icon": "fa-check-circle"
+        }
+      ]
+    },
+    "consumibleParaImportar": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra",
+          "icon": "fa-box"
+        },
+        {
+          "orden": 2,
+          "etapa": "Generación de pedido",
+          "icon": "fa-file-invoice"
+        },
+        {
+          "orden": 3,
+          "etapa": "Pedido de importaciones",
+          "icon": "fa-ship"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Almacén",
+          "icon": "fa-warehouse"
+        },
+        {
+          "orden": 5,
+          "etapa": "Trabajando pedido",
+          "icon": "fa-tools"
+        },
+        {
+          "orden": 6,
+          "etapa": "Proceso de programación",
+          "icon": "fa-clipboard-check"
+        },
+        {
+          "orden": 7,
+          "etapa": "En Camino",
+          "icon": "fa-truck"
+        },
+        {
+          "orden": 8,
+          "etapa": "Entregado",
+          "icon": "fa-check-circle"
+        }
+      ]
+    },
+    "productoParaImportar": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra",
+          "icon": "fa-box"
+        },
+        {
+          "orden": 2,
+          "etapa": "Generación de pedido",
+          "icon": "fa-file-invoice"
+        },
+        {
+          "orden": 3,
+          "etapa": "Pedido de importaciones",
+          "icon": "fa-ship"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Almacén",
+          "icon": "fa-warehouse"
+        },
+        {
+          "orden": 5,
+          "etapa": "Proceso de control de calidad",
+          "icon": "fa-tasks"
+        },
+        {
+          "orden": 6,
+          "etapa": "En Embalaje",
+          "icon": "fa-box-open"
+        },
+        {
+          "orden": 7,
+          "etapa": "Proceso de programación",
+          "icon": "fa-clipboard-check"
+        },
+        {
+          "orden": 8,
+          "etapa": "En Camino",
+          "icon": "fa-truck"
+        },
+        {
+          "orden": 9,
+          "etapa": "Entregado",
+          "icon": "fa-check-circle"
+        }
+      ]
+    }
+  }

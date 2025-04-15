@@ -1,0 +1,884 @@
+/* 
+ * KOSSODO GROUP - TRACKING STYLES
+ * This file contains all styles for the tracking component
+ */
+
+/* Variables CSS específicas para el componente de seguimiento */
+:root {
+    /* Variables tipográficas */
+    --font-family-base: 'Titillium Web', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Variables estructurales */
+    --sidebar-width: 250px;
+    --header-height: 60px;
+    --container-padding: 2rem;
+    
+    /* Variables de color */
+    --primary-color: #007bff;
+    --kossodo-purple: #6b46c1;
+    --kossodo-purple-dark: #553c9a;
+    --kossodo-red: #e53e3e;
+    --kossodo-green: #38a169;
+    --kossodo-yellow: #ecc94b;
+    --border-color: #d1d5db;
+    --text-color: #111827;
+    --text-muted: #6b7280;
+    --bg-light: #f9fafb;
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Estilos base */
+body {
+    font-family: var(--font-family-base);
+    color: var(--text-color);
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout Container - Para uso independiente */
+.layout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.sistema-seguimiento {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Estilos para contenedor sin sidebar ni header */
+.tracking-solo-container {
+    padding: 2rem;
+    background-color: #f9fafb;
+}
+
+.tracking-solo-container .main-content {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.sistema-seguimiento h1 {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: #4b5563;
+}
+
+/* Search Form */
+.search-tracking-container {
+    margin-bottom: 2rem;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Group - Migrado desde styles.css */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.search-input-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.search-input-container input {
+    flex: 1;
+    padding: 0.625rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+}
+
+.search-btn {
+    background-color: #6b46c1;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s;
+}
+
+.search-btn:hover {
+    background-color: #553c9a;
+}
+
+.search-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Estilos de Resultados de Tracking */
+.tracking-results {
+    width: 100%;
+}
+
+/* Tracking Card */
+.tracking-card {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+/* Nueva estructura de columnas */
+.tracking-columns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+}
+
+.tracking-header {
+    padding: 0.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tracking-column {
+    padding: 0.5rem;
+    border-right: 1px solid #f3f4f6;
+}
+
+.tracking-column:last-child {
+    border-right: none;
+}
+
+.tracking-column:first-child {
+    width: 20%;
+}
+
+.tracking-column:nth-child(2) {
+    width: 20%;
+}
+
+.timeline-column {
+    width: 50%;
+}
+
+.tracking-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.tracking-value {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.tracking-date {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Customer Info - Nueva estructura */
+.customer-info {
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.customer-details {
+    width: 100%;
+}
+
+.customer-label {
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.customer-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.customer-field {
+    flex: 1;
+    min-width: 200px;
+}
+
+.field-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.field-value {
+    font-size: 0.875rem;
+    color: #111827;
+}
+
+/* Tracking Summary */
+.tracking-summary {
+    padding: 0;
+    cursor: pointer;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Mini Timeline */
+.mini-timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+    height: 100%;
+}
+
+.step-dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.step-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6b46c1;
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Estado activo para mini-timeline */
+.step-icon.active {
+    background-color: #e53e3e; /* Color rojo para estado activo */
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.3);
+}
+
+.step-icon.active i {
+    color: #fef08a; /* Color amarillo para el icono del estado activo */
+}
+
+/* Estado entregado para mini-timeline */
+.step-icon.delivered {
+    background-color: var(--kossodo-green); /* Color verde para estado entregado */
+    box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.3);
+}
+
+.step-icon.delivered i {
+    color: white; /* Color para el icono del estado entregado */
+}
+
+.step-label-mini {
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-align: center;
+    max-width: 60px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Etiqueta del paso activo */
+.step-dot.active .step-label-mini {
+    color: #e53e3e;
+    font-weight: 600;
+}
+
+/* Etiqueta del paso entregado */
+.step-dot.delivered .step-label-mini {
+    color: var(--kossodo-green);
+    font-weight: 600;
+}
+
+.step-line {
+    flex: 1;
+    height: 2px;
+    background-color: #6b46c1;
+    min-width: 10px;
+    max-width: 40px;
+}
+
+/* Línea antes del estado activo */
+.step-line.active-before {
+    background-color: #6b46c1;
+}
+
+/* Línea después del estado activo */
+.step-line.active-after {
+    background-color: #d1d5db; /* Gris claro para indicar estados futuros */
+}
+
+/* Expand/Collapse Control */
+.expand-collapse {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: #ffffff;
+}
+
+.expand-collapse button {
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.25rem;
+    transition: color 0.2s;
+}
+
+.expand-collapse button:hover {
+    color: #6b46c1;
+}
+
+/* Tracking Details - con transición */
+.tracking-details {
+    border-top: 1px solid #e5e7eb;
+    max-height: 2000px;
+    transition: max-height 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.tracking-details.collapsed {
+    max-height: 0;
+}
+
+/* Delivery Status Panel */
+.delivery-status {
+    padding: 1.5rem;
+    background-color: #6b46c1;
+}
+
+.delivery-status.delivered {
+    background-color: var(--kossodo-green);
+}
+
+.status-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-info {
+    color: white;
+    text-align: center;
+}
+
+.estado-actual {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.estado-fecha {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.status-badge {
+    background-color: white;
+    color: #6b46c1;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Delivery Timeline */
+.delivery-timeline {
+    padding: 1.5rem;
+    background-color: #f0f9ff;
+}
+
+.delivery-timeline h3 {
+    font-weight: 500;
+    color: #111827;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.timeline-container {
+    position: relative;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 0.75rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: #6b46c1;
+}
+
+/* Sección de la línea después del estado activo */
+.timeline-line-future {
+    position: absolute;
+    left: 0.75rem;
+    width: 2px;
+    background-color: #d1d5db;
+}
+
+.timeline-step {
+    display: flex;
+    margin-left: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.375rem;
+    transition: all 0.3s;
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.timeline-step:hover {
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-step-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #6b46c1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-left: -1rem;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* Estado activo para timeline principal */
+.timeline-step.active .timeline-step-icon {
+    background-color: #e53e3e; /* Color rojo para estado activo */
+    box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.3);
+}
+
+.timeline-step.active .timeline-step-icon i {
+    color: #fef08a; /* Color amarillo para el icono */
+}
+
+.timeline-step.active .step-label {
+    color: #e53e3e;
+    font-weight: 600;
+}
+
+.timeline-step.active .step-id {
+    background-color: #e53e3e;
+    color: white;
+    padding: 0.3rem 1.23rem;
+    border-radius: 1rem;
+    height: 100%;
+}
+
+/* Estados completado y pendiente */
+.timeline-step.completed .timeline-step-icon {
+    background-color: var(--kossodo-purple);
+    color: #fff;
+}
+
+.timeline-step.completed:last-child .timeline-step-icon {
+    background-color: var(--kossodo-green);
+}
+
+.timeline-step.pending .timeline-step-icon {
+    background-color: #d1d5db;
+    color: #6b7280;
+}
+
+.timeline-step-content {
+    margin-left: 1rem;
+    flex: 1;
+}
+
+.timeline-step-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.step-label {
+    font-weight: 500;
+    color: #111827;
+}
+
+.step-id {
+    font-size: 0.875rem;
+    color: #6b46c1;
+    font-weight: 500;
+}
+
+.step-date {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.step-details {
+    font-size: 0.875rem;
+    color: #4b5563;
+    white-space: pre-line;
+    margin-top: 0.25rem;
+}
+
+/* Delivery Details */
+.delivery-details {
+    padding: 1.5rem;
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.details-left {
+    flex: 1;
+}
+
+.details-left h3 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.address-info {
+    display: flex;
+    gap: 0.5rem;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+}
+
+.address-info i {
+    margin-top: 0.25rem;
+}
+
+.address-info p {
+    margin: 0;
+}
+
+/* Enlaces de acción */
+.action-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b46c1;
+    font-weight: 500;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+}
+
+.action-btn:hover {
+    color: #553c9a;
+}
+
+.delivery-status-badge {
+    background-color: #6b46c1;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    margin-left: 2rem;
+}
+
+.delivery-status-badge.delivered {
+    background-color: var(--kossodo-green);
+}
+
+.delivery-status-badge i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.status-title {
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.status-subtitle {
+    font-size: 0.875rem;
+    margin: 0;
+}
+
+/* Document Items - Nuevos estilos para documentos */
+.document-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    margin-bottom: 0.5rem;
+    background-color: #fff;
+    transition: box-shadow 0.2s;
+}
+
+.document-item:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.doc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.doc-name {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+.doc-name i {
+    color: var(--kossodo-purple);
+}
+
+.doc-type {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.doc-download {
+    color: var(--kossodo-purple);
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+
+.doc-download:hover {
+    color: var(--kossodo-purple-dark);
+}
+
+.doc-download i {
+    font-size: 1.25rem;
+}
+
+/* Photo & Documents Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 0;
+    border-radius: 0.5rem;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-weight: 500;
+}
+
+.close-button {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.close-button:hover {
+    color: #6b46c1;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.photo-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.photo-item {
+    width: 200px;
+    height: 200px;
+    border-radius: 0.375rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.photo-item:hover {
+    transform: scale(1.05);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.docs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* Estados de empty */
+.photo-gallery p, 
+.docs-list p {
+    color: #6b7280;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .layout-container {
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar";
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .tracking-columns {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .tracking-column {
+        width: 100% !important;
+        border-right: none;
+        border-bottom: 1px solid #f3f4f6;
+        padding: 0.75rem 0;
+    }
+    
+    .tracking-column:last-child {
+        border-bottom: none;
+    }
+    
+    .customer-row {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .mini-timeline {
+        justify-content: space-between;
+        overflow-x: auto;
+        padding: 1rem 0.5rem;
+    }
+    
+    .step-icon {
+        width: 2rem;
+        height: 2rem;
+        font-size: 0.875rem;
+    }
+    
+    .status-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .status-badge {
+        align-self: center;
+    }
+    
+    .details-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .delivery-status-badge {
+        margin-left: 0;
+    }
+    
+    .document-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .doc-info {
+        margin-bottom: 0.5rem;
+    }
+    
+    .doc-download {
+        align-self: flex-end;
+    }
+}
+
+/* Utilidades */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.animate-fade {
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

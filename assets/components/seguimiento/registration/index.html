@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Registros de Seguimiento</title>
+    <link rel="stylesheet" href="css/registration.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generador de Registros de Seguimiento</h1>
+        
+        <form id="trackingForm">
+            <h2>Información del Envío</h2>
+            
+            <div class="form-group">
+                <label for="trackingNumber">Número de Seguimiento</label>
+                <input type="text" id="trackingNumber" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="customer">Cliente</label>
+                <input type="text" id="customer" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ruc">RUC</label>
+                <input type="text" id="ruc" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="address">Dirección</label>
+                <input type="text" id="address" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="deliveryType">Tipo de Entrega</label>
+                <select id="deliveryType" required>
+                    <option value="ENTREGA FAMILIAR DIRECTO">ENTREGA FAMILIAR DIRECTO</option>
+                    <option value="ENTREGA COMERCIAL">ENTREGA COMERCIAL</option>
+                    <option value="ENTREGA DIRECTA">ENTREGA DIRECTA</option>
+                    <option value="ENTREGA FAMILIAR">ENTREGA FAMILIAR</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="estimatedDeliveryDate">Fecha de Entrega Estimada</label>
+                <input type="date" id="estimatedDeliveryDate" required>
+            </div>
+            
+            <h2>Tipo de Producto</h2>
+            <div class="form-group">
+                <label for="productType">Seleccione el tipo de producto</label>
+                <select id="productType" required>
+                    <option value="">Seleccione un tipo...</option>
+                    <option value="consumibleEnStock">Consumible en Stock</option>
+                    <option value="productoEnStock">Producto en Stock</option>
+                    <option value="consumibleParaImportar">Consumible para Importar</option>
+                    <option value="productoParaImportar">Producto para Importar</option>
+                </select>
+            </div>
+            
+            <h2>Estado Actual del Envío</h2>
+            <div class="form-group">
+                <label for="currentStatusId">Estado Actual</label>
+                <select id="currentStatusId" required>
+                    <option value="">Seleccione primero el tipo de producto</option>
+                </select>
+            </div>
+            
+            <h2>Historial de Estados</h2>
+            <div id="stepsContainer" class="steps-container">
+                <!-- Steps will be dynamically generated here -->
+                <p class="empty-state">Seleccione un tipo de producto para ver los estados disponibles</p>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Generar Registro</button>
+            </div>
+        </form>
+        
+        <div class="output-section">
+            <h2>Resultado JSON</h2>
+            <div class="output-actions">
+                <button id="copyJsonBtn" class="btn-secondary">
+                    <i class="fas fa-copy"></i> Copiar JSON
+                </button>
+                <button id="downloadJsonBtn" class="btn-secondary">
+                    <i class="fas fa-download"></i> Descargar JSON
+                </button>
+            </div>
+            <pre id="jsonOutput" class="json-output"></pre>
+        </div>
+    </div>
+
+    <script src="js/validation.js"></script>
+    <script src="js/registration.js"></script>
+</body>
+</html>

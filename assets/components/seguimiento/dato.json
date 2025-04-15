@@ -1,0 +1,218 @@
+{
+    "orden": {
+      "numeroSeguimiento-OT-OC": "EXP789012",
+      "cliente-Nombre": "CLIENTE DEMO",
+      "fechaGeneraicon-OT-OC": "2023-03-10",
+      "fechaEntregaProgramada": "2023-03-05",
+      "RUC": "20123456789",
+      "detallesEntrega": {
+        "direccion": "Calle Las Flores 456, Surco, Lima",
+        "documentosAdjuntos": [
+          {
+            "nombreArchivo": "Factura_F001-9012.pdf",
+            "descripcion": "Factura - 2023-03-08",
+            "urlDescarga": "https://ejemplo.com/facturas/Factura_F001-9012.pdf"
+          }
+        ]
+      },
+      "estadoActual": {
+        "codigoEstado": 3,
+        "nombreEstado": "Confirmación de Ruta",
+        "fechaEstado": "2023-03-08 16:20:35"
+      },
+      "historialEstados": [
+        {
+          "codigoEstado": 1,
+          "nombreEstado": "OC Entregada",
+          "fecha": "2023-03-08 10:30:15",
+          "agencia": "G4 (DNLM => HosG4 => PBX X3038, DR => 176250-176250 => PO(33919630))"
+        },
+        {
+          "codigoEstado": 2,
+          "nombreEstado": "Entregado a Despacho",
+          "fecha": "2023-03-08 10:35:00",
+          "agencia": "G4-LIMA (G4-ORLANDO)"
+        },
+        {
+          "codigoEstado": 3,
+          "nombreEstado": "Confirmación de Ruta",
+          "fecha": "2023-03-08 16:20:35",
+          "agencia": "G4-LIMA"
+        },
+        {
+          "codigoEstado": 4,
+          "nombreEstado": "En Ruta",
+          "fecha": "2023-03-09 08:00:00",
+          "agencia": "G4-LIMA"
+        },
+        {
+          "codigoEstado": 5,
+          "nombreEstado": "Entregado",
+          "fecha": "2023-03-09 16:00:00",
+          "agencia": "G4-LIMA"
+        }
+      ]
+    }
+  }
+  
+  {
+    "consumibleEnStock": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra"
+        },
+        {
+          "orden": 2,
+          "etapa": "Trabajando pedido"
+        },
+        {
+          "orden": 3,
+          "etapa": "Proceso de programación"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Camino"
+        },
+        {
+          "orden": 5,
+          "etapa": "Entregado"
+        }
+      ]
+    }
+  }
+
+  {
+    "productoEnStock": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra"
+        },
+        {
+          "orden": 2,
+          "etapa": "En Almacén"
+        },
+        {
+          "orden": 3,
+          "etapa": "Proceso de control de calidad"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Embalaje"
+        },
+        {
+          "orden": 5,
+          "etapa": "Proceso de programación"
+        },
+        {
+          "orden": 6,
+          "etapa": "En Camino"
+        },
+        {
+          "orden": 7,
+          "etapa": "Entregado"
+        }
+      ]
+    }
+  }
+  
+  {
+    "consumibleParaImportar": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra"
+        },
+        {
+          "orden": 2,
+          "etapa": "Generación de pedido"
+        },
+        {
+          "orden": 3,
+          "etapa": "Pedido de importaciones"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Almacén"
+        },
+        {
+          "orden": 5,
+          "etapa": "Trabajando pedido"
+        },
+        {
+          "orden": 6,
+          "etapa": "Proceso de programación"
+        },
+        {
+          "orden": 7,
+          "etapa": "En Camino"
+        },
+        {
+          "orden": 8,
+          "etapa": "Entregado"
+        }
+      ]
+    }
+  }
+  {
+    "productoParaImportar": {
+      "flujoEstados": [
+        {
+          "orden": 1,
+          "etapa": "Orden de Compra"
+        },
+        {
+          "orden": 2,
+          "etapa": "Generación de pedido"
+        },
+        {
+          "orden": 3,
+          "etapa": "Pedido de importaciones"
+        },
+        {
+          "orden": 4,
+          "etapa": "En Almacén"
+        },
+        {
+          "orden": 5,
+          "etapa": "Proceso de control de calidad"
+        },
+        {
+          "orden": 6,
+          "etapa": "En Embalaje"
+        },
+        {
+          "orden": 7,
+          "etapa": "Proceso de programación"
+        },
+        {
+          "orden": 8,
+          "etapa": "En Camino"
+        },
+        {
+          "orden": 9,
+          "etapa": "Entregado"
+        }
+      ]
+    }
+  }
+  
+
+  --**--*
+
+co
+- datos informativos
+- Categorias / Stock prod - Stock consum - importacion stock -  importacion consum  
+- Sub-categorias / completo - parcial
+
+registo de Estado de OC 
+- oc 
+- estado a registrar de oc
+- estado de proceso de Categoria / 1,2,3,4,5,6 dependiendo en que nivel del processo se encuentre y a la cantidad de procesos de esa categoria 
+- observacion por estado / datos en especifico a mostrar en la seccionde mas inormacion
+- Timestamp
+
+OC Status
+- oc 
+- aqui se generar un registro estado por cada cambio de estado 

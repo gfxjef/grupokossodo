@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguimiento de Pedidos - Dashboard</title>
+    <!-- Agregando fuente Titillium Web -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tracking.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="layout-container tracking-solo-container">
+        <div class="sistema-seguimiento">
+            <h1>Seguimiento de Pedidos</h1>
+            
+            <div id="mainContent">
+                <!-- Search Section -->
+                <div class="search-tracking-container">
+                    <div class="form-group">
+                        <label for="trackingNumber">Número de Seguimiento</label>
+                        <div class="search-input-container">
+                            <input type="text" id="trackingNumber" placeholder="Ingrese número de tracking" value="WYB319740961">
+                            <button id="searchTrackingBtn" class="search-btn">
+                                <i class="fas fa-search"></i> Buscar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div id="trackingResults" class="tracking-results">
+                    <div class="tracking-card">
+                        <!-- Top Summary Section - Reorganized in columns -->
+                        <div class="tracking-summary" id="trackingSummary">
+                            <!-- Customer Info (ahora arriba de las columnas) -->
+                            <div class="customer-info">
+                                <div class="customer-details">
+                                    <div class="customer-label">Cliente:</div>
+                                    <div class="customer-row">
+                                        <div class="customer-field">
+                                            <div class="field-label">Nombre:</div>
+                                            <div class="field-value">Jefferson Teófilo Portillo</div>
+                                        </div>
+                                        <div class="customer-field">
+                                            <div class="field-label">RUC:</div>
+                                            <div class="field-value">20563429284</div>
+                                        </div>
+                                    </div>
+                                    <div class="customer-row">
+                                        <div class="customer-field">
+                                            <div class="field-label">Fecha de entrega estimada:</div>
+                                            <div class="field-value">2023-03-05</div>
+                                        </div>
+                                        <div class="customer-field">
+                                            <div class="field-label">Tipo de entrega:</div>
+                                            <div class="field-value">ENTREGA FAMILIAR DIRECTO</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tracking-header tracking-columns">
+                                <!-- Columna 1: Registro OC y fecha -->
+                                <div class="tracking-column">
+                                    <div class="tracking-title">Registro de OC</div>
+                                    <div class="tracking-value">WYB319740961</div>
+                                    <div class="tracking-date">2023/03/04 15:59:41</div>
+                                </div>
+                                
+                                <!-- Columna 2: Estado actual, descripción y fecha -->
+                                <div class="tracking-column">
+                                    <div class="tracking-title">Estado Actual</div>
+                                    <div class="tracking-value">Entregado</div>
+                                    <div class="tracking-date">2023/03/05 18:35:28</div>
+                                </div>
+                                
+                                <!-- Columna 3: Mini Timeline -->
+                                <div class="tracking-column timeline-column">
+                                    <div class="mini-timeline" id="miniTimeline">
+                                        <!-- Will be populated by JS -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Expand/Collapse control -->
+                            <div class="expand-collapse">
+                                <button id="toggleDetailsBtn">
+                                    <i class="fas fa-chevron-down" id="toggleIcon"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Expanded Details Section -->
+                        <div class="tracking-details" id="trackingDetails">
+                            <!-- Delivery Status Panel - Simplificado para mostrar solo estado actual -->
+                            <div class="delivery-status">
+                                <div class="status-content">
+                                    <div class="status-info">
+                                        <div class="estado-actual">Entregado</div>
+                                        <div class="estado-fecha">2023/03/05 18:35:28</div>
+                                    </div>
+                                    <div class="status-badge">
+                                        <i class="fas fa-truck"></i>
+                                        <span>Entrega a domicilio</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Delivery Timeline -->
+                            <div class="delivery-timeline">
+                                <h3>Resumen del envío</h3>
+                                <div class="timeline-container" id="timelineContainer">
+                                    <!-- Will be populated by JS -->
+                                </div>
+                            </div>
+
+                            <!-- Delivery Details -->
+                            <div class="delivery-details">
+                                <div class="details-container">
+                                    <div class="details-left">
+                                        <h3>Detalles de entrega</h3>
+                                        <div class="address-info">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <p>Jr los rocos 2456 2456 Dpto. 2456 SAN JUAN DE LURIGANCHO - LIMA</p>
+                                        </div>
+                                        <div class="action-links">
+                                            <button id="viewPhotosBtn" class="action-btn">
+                                                <i class="fas fa-camera"></i>
+                                                Ver fotografías de entrega
+                                            </button>
+                                            <button id="viewDocsBtn" class="action-btn">
+                                                <i class="fas fa-file-alt"></i>
+                                                Ver documentos adjuntos
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="delivery-status-badge">
+                                        <i class="fas fa-check-circle"></i>
+                                        <p class="status-title">¡Envío entregado!</p>
+                                        <p class="status-subtitle">Nos movemos por ti</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Photo Modal (hidden by default) -->
+                <div id="photoModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Fotografías de entrega</h3>
+                            <span class="close-button" id="closePhotoModal">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="photo-gallery">
+                                <p>No hay fotografías disponibles para este envío.</p>
+                                <!-- Dummy photos would be added here in a real implementation -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Documents Modal (hidden by default) -->
+                <div id="docsModal" class="modal" style="display: none;">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3>Documentos adjuntos</h3>
+                            <span class="close-button" id="closeDocsModal">&times;</span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="docs-list">
+                                <p>No hay documentos disponibles para este envío.</p>
+                                <!-- Dummy document list would be added here in a real implementation -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load scripts in order -->
+    <script src="tracking.js"></script>
+</body>
+</html>

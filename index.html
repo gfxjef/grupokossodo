@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redireccionando...</title>
+</head>
+<body>
+    <script>
+        // Verificar si el usuario está autenticado
+        const userData = sessionStorage.getItem('userData');
+        if (userData) {
+            // Si está autenticado, redirigir a welcome.html en su nueva ubicación
+            window.location.href = 'assets/components/welcome/welcome.html';
+        } else {
+            // Si no está autenticado, redirigir a login.html
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html>

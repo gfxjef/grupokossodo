@@ -1,0 +1,1060 @@
+/*==============================
+  TABLE OF CONTENTS
+  1. Variables
+  2. Reset & Base
+  3. Layout & Grid
+  4. Typography
+  5. Form Elements
+  6. Buttons
+  7. Header & Navigation
+  8. Sidebar
+  9. Content Area
+  10. Tables
+  11. Modals
+  12. Alerts & Messages
+  13. Loaders & Animations
+  14. Utilities
+  15. Responsive
+==============================*/
+
+/*==============================
+  1. Variables
+==============================*/
+:root {
+    /* Dimensiones principales */
+    --sidebar-width: 250px; /* Updated to match layout.css */
+    --header-height: 60px; /* Updated to match layout.css */
+    --container-padding: 2rem;
+    --section-spacing: 2rem;
+    
+    /* Espaciado */
+    --space-xs: 0.25rem;
+    --space-sm: 0;
+    --space-md: 0.5rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    
+    /* Colores */
+    --primary-color: #007bff;
+    --secondary-color: #00ff88;
+    --text-color: #333;
+    --border-color: #ddd;
+    --hover-bg: #f8f9fa;
+    --gradient: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    --kossodo-gradient: linear-gradient(to right, #6cb9a2, #3b4664, #f38835);
+    
+    /* Sombras */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+    
+    /* Form Elements */
+    --input-height: 40px;
+    --input-border-radius: 4px;
+    --input-padding: 8px 12px;
+    
+    /* New status colors */
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+}
+
+/*==============================
+  2. Reset & Base
+==============================*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background: #f5f5f5;
+}
+
+/*==============================
+  3. Layout & Grid
+==============================*/
+/* Grid layout structure from layout.css */
+.layout-container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "sidebar main";
+    grid-template-columns: var(--sidebar-width) 1fr;
+    grid-template-rows: var(--header-height) 1fr;
+    min-height: 100vh;
+}
+
+.container,
+.container-fluid {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.col {
+    padding: 0 15px;
+    flex: 1;
+}
+
+/* Content layouts */
+.content-section {
+    width: 100%;
+    padding: var(--space-lg) var(--container-padding);
+}
+
+#contenido-principal {
+    width: 100%;
+    padding: var(--space-xl);
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+/*==============================
+  4. Typography
+==============================*/
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.h1-degradado {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: var(--kossodo-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.texto-gradiente {
+    background: var(--kossodo-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/*==============================
+  5. Form Elements
+==============================*/
+/* Standard input styles */
+.form-control,
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    height: var(--input-height);
+    padding: var(--input-padding);
+    border: 1px solid var(--border-color);
+    border-radius: var(--input-border-radius);
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Search input variations */
+.search-container {
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 20px;
+    padding: var(--space-sm) var(--space-lg);
+    width: 320px;
+    transition: width 0.3s ease;
+}
+
+.search-container input {
+    border: none;
+    background: none;
+    outline: none;
+    width: 100%;
+    padding-right: 0.5rem;
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+}
+
+/*==============================
+  6. Buttons
+==============================*/
+/* Base button styles */
+.btn {
+    display: inline-block;
+    font-weight: 500;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+/* Primary button (gradient hover) */
+.btn-primary {
+    position: relative;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 12px;
+    border: 2px solid #6cb9a2;
+    background-color: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+    transition: border-color 0.5s ease-in-out;
+}
+
+.btn-primary::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--kossodo-gradient);
+    z-index: -1;
+    transition: opacity 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.btn-primary span {
+    background: var(--kossodo-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    border-color: #f38835;
+    background-color: transparent;
+    color: white;
+}
+
+.btn-primary:hover::before {
+    opacity: 1;
+}
+
+.btn-primary:hover span {
+    -webkit-text-fill-color: white;
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: white;
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+}
+
+/* Logout button specific style */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #1a73e8;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-icon {
+    color: #1a73e8;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #1a73e8;
+}
+
+.logout-btn:hover .logout-icon {
+    color: white;
+}
+
+/*==============================
+  7. Header & Navigation
+==============================*/
+.header {
+    grid-area: header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background: #fff;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 200;
+    box-shadow: var(--shadow-sm);
+    gap: 1.5rem; /* Espacio entre los elementos */
+}
+
+/* Logo en el header */
+.header-logo {
+    flex-shrink: 0;
+}
+
+.header-logo span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3b4664;
+    letter-spacing: 0.5px;
+}
+
+/* Contenedor de búsqueda */
+.search-container {
+    position: relative;
+    flex: 1;
+    max-width: 500px;
+}
+
+.search-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Campo de búsqueda */
+.search-input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 3rem; /* Aumentar padding izquierdo para el ícono */
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    background: #f8f9fa;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+/* Botón de búsqueda */
+.btn-search {
+    position: absolute;
+    left: 15px; /* Ajustado para que esté dentro del padding del input */
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #546170;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.search-icon {
+    font-style: normal;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+/* Resultados de búsqueda */
+.search-results {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-out;
+}
+
+.search-results.show {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+}
+
+/* Resultados de búsqueda */
+.search-results {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    z-index: 1000;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-out;
+}
+
+.search-results.show {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+}
+
+/* Estilizar la barra de desplazamiento */
+.search-results::-webkit-scrollbar {
+    width: 8px;
+}
+
+.search-results::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.search-results::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+}
+
+/* Items de resultado */
+.search-result-item {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.search-result-item:hover {
+    background-color: rgba(108, 185, 162, 0.08);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.search-result-title {
+    color: #3b4664;
+    font-weight: 500;
+}
+
+.search-result-title strong {
+    color: #6cb9a2;
+    font-weight: 600;
+}
+
+.search-result-path {
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.path-icon {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Mensaje de no resultados */
+.no-results {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: #666;
+}
+
+.no-results-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.no-results-text {
+    font-size: 0.9rem;
+}
+
+/* Perfil de usuario en el Header */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espacio entre user-info y logout-btn */
+    flex-shrink: 0;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinea texto a la derecha */
+    line-height: 1.3; /* Ajusta el interlineado */
+}
+
+.user-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #546170; /* Color gris oscuro/plomo */
+}
+
+.user-role { /* Nuevo estilo para el rol */
+    font-size: 0.8rem;
+    color: #8a96a3; /* Color gris más claro */
+    text-transform: capitalize; /* Opcional: Poner primera letra en mayúscula */
+}
+
+/* Botón de cerrar sesión (ya debería estar estilizado correctamente) */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #1a73e8;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.logout-icon {
+    color: #1a73e8;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #1a73e8;
+}
+
+.logout-btn:hover .logout-icon {
+    color: white;
+}
+
+/*==============================
+  8. Sidebar
+==============================*/
+/* Sidebar container */
+.sidebar {
+    grid-area: sidebar;
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    background: #fff;
+    z-index: 100;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    border-right: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: 0.5rem 0;
+}
+
+/* Menú principal */
+.menu-level-1,
+.submenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo base para todos los items de navegación */
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    color: #546170;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.nav-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background-color: rgba(108, 185, 162, 0.08);
+    color: #3b4664;
+    border-left: 3px solid #6cb9a2;
+}
+
+/* Submenús verticales */
+.has-submenu > a::after {
+    content: "↓";
+    font-size: 0.8rem;
+    position: absolute;
+    right: 1rem;
+    transition: transform 0.2s;
+}
+
+.has-submenu.active > a::after {
+    transform: rotate(180deg);
+    color: #6cb9a2;
+}
+
+/* Submenu desplegable */
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: rgba(248, 249, 250, 0.5);
+    opacity: 0.8;
+    visibility: visible; /* Asegurarse que es visible */
+}
+
+/* Cuando está activo, mostrar completamente */
+.has-submenu.active > .submenu {
+    max-height: 500px; /* Valor suficiente para mostrar todo el contenido */
+    opacity: 1;
+}
+
+/* Estilos específicos por nivel */
+.menu-level-1 > li > .submenu .nav-item {
+    padding-left: 2rem;
+}
+
+.menu-level-1 > li > .submenu > li > .submenu .nav-item {
+    padding-left: 3rem;
+    background-color: rgba(248, 249, 250, 0.8);
+}
+
+/* Estilo para elementos con submenú */
+.has-submenu > .nav-item {
+    cursor: pointer;
+    position: relative;
+}
+
+.has-submenu > .nav-item::after {
+    content: "↓";
+    font-size: 0.8rem;
+    position: absolute;
+    right: 1rem;
+    transition: transform 0.2s;
+}
+
+.has-submenu.active > .nav-item::after {
+    transform: rotate(180deg);
+    color: #6cb9a2;
+}
+
+/*==============================
+  9. Content Area
+==============================*/
+.main-content {
+    grid-area: main;
+    min-height: 100vh;
+    padding: 2rem 2rem 2rem 2rem; /* top right bottom left - all set to 2rem */
+    background: #f8f9fa;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.content {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/*==============================
+  10. Tables
+==============================*/
+.table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+}
+
+th, td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+th {
+    font-weight: 600;
+    background-color: var(--hover-bg);
+}
+
+/*==============================
+  11. Modals
+==============================*/
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #3b4664;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    gap: 15px;
+}
+
+/*==============================
+  12. Alerts & Messages
+==============================*/
+.alert {
+    padding: 12px 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid var(--danger-color);
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid var(--warning-color);
+}
+
+.alert-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border-left: 4px solid var(--info-color);
+}
+
+.error-message {
+    color: var(--danger-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.success-message {
+    color: var(--success-color);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/*==============================
+  13. Loaders & Animations
+==============================*/
+/* Barra de progreso */
+.progress-container {
+    margin: 1rem 0;
+}
+
+.progress-bar {
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient);
+    width: 0;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Spinner */
+.loader-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #6cb9a2;
+    border-right: 4px solid #3b4664;
+    border-bottom: 4px solid #f38835;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animaciones simples */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-in-out;
+}
+
+/*==============================
+  14. Utilities
+==============================*/
+/* Visibilidad */
+.hidden {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden !important;
+}
+
+/* Espaciado */
+.mt-0 { margin-top: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
+.ml-0 { margin-left: 0 !important; }
+.mr-0 { margin-right: 0 !important; }
+
+.mt-1 { margin-top: 0.25rem !important; }
+.mb-1 { margin-bottom: 0.25rem !important; }
+.ml-1 { margin-left: 0.25rem !important; }
+.mr-1 { margin-right: 0.25rem !important; }
+
+.mt-2 { margin-top: 0.5rem !important; }
+.mb-2 { margin-bottom: 0.5rem !important; }
+.ml-2 { margin-left: 0.5rem !important; }
+.mr-2 { margin-right: 0.5rem !important; }
+
+.mt-3 { margin-top: 1rem !important; }
+.mb-3 { margin-bottom: 1rem !important; }
+.ml-3 { margin-left: 1rem !important; }
+.mr-3 { margin-right: 1rem !important; }
+
+.mt-4 { margin-top: 1.5rem !important; }
+.mb-4 { margin-bottom: 1.5rem !important; }
+.ml-4 { margin-left: 1.5rem !important; }
+.mr-4 { margin-right: 1.5rem !important; }
+
+.mt-5 { margin-top: 3rem !important; }
+.mb-5 { margin-bottom: 3rem !important; }
+.ml-5 { margin-left: 3rem !important; }
+.mr-5 { margin-right: 3rem !important; }
+
+/* Flexbox */
+.d-flex { display: flex !important; }
+.flex-row { flex-direction: row !important; }
+.flex-column { flex-direction: column !important; }
+.justify-content-start { justify-content: flex-start !important; }
+.justify-content-center { justify-content: center !important; }
+.justify-content-end { justify-content: flex-end !important; }
+.justify-content-between { justify-content: space-between !important; }
+.align-items-start { align-items: flex-start !important; }
+.align-items-center { align-items: center !important; }
+.align-items-end { align-items: flex-end !important; }
+
+/*==============================
+  15. Responsive
+==============================*/
+@media (max-width: 1200px) {
+    :root {
+        --container-padding: 1.5rem;
+    }
+    
+    #contenido-principal {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    :root {
+        --sidebar-width: 220px;
+    }
+
+    .menu a {
+        padding: var(--space-sm) var(--space-md);
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --container-padding: 1rem;
+    }
+    
+    .layout-container {
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar";
+        grid-template-columns: 1fr;
+    }
+    
+    /* Botón hamburguesa */
+    #menu-toggle {
+        display: block;
+    }
+    
+    /* Ajustes para el sidebar */
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        position: fixed;
+        z-index: 1001; 
+        width: 270px;
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .sidebar-mobile {
+        position: static;
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .top-bar {
+        left: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        padding: calc(var(--header-height) + 1rem) 1rem 1rem;
+    }
+    /* Estilos adicionales para pantallas pequeñas... */
+}
+
+/* Aseguramos que todos los contenedores sean visibles */
+.sidebar, 
+.sidebar-nav, 
+.menu-level-1, 
+.has-submenu, 
+.submenu {
+    overflow: visible;
+}
+/* Logo en el header */
+.header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+}

@@ -1,0 +1,368 @@
+/* 
+ * KOSSODO GROUP - UNIFIED COMPONENT STYLES
+ * This file contains common styles for components used across multiple pages
+ */
+
+/* TABLE STYLES */
+.table-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #000;
+}
+
+th {
+    background: #f5f5f5;
+}
+
+/* CARD STYLES */
+.card {
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.card-header {
+    background-color: #f5f5f5;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* MODAL STYLES */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+}
+
+.modal-header {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.modal-footer button {
+    margin-left: 10px;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* BUTTONS & ACTIONS */
+.btn-eliminar {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-eliminar:hover {
+    background-color: #d32f2f;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* PRODUCT ITEMS */
+.producto-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.producto-item label {
+    flex: 1;
+}
+
+.producto-item input {
+    width: 80px;
+    margin-right: 10px;
+}
+
+.productos-json {
+    max-width: 300px;
+    word-wrap: break-word;
+}
+
+/* PROMOTIONAL ITEMS */
+.promo-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.promo-item:last-child {
+    border-bottom: none;
+}
+
+/* PROGRESS INDICATOR */
+.progress-bar {
+    height: 10px;
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background-color: #000;
+    border-radius: 5px;
+    transition: width 0.4s ease;
+}
+
+#progress-container {
+    margin: 20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* MESSAGES & NOTIFICATIONS */
+.success-message {
+    color: green;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #e8f5e9;
+    border-left: 5px solid green;
+    font-weight: bold;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 16px;
+}
+
+/* UTILITY CLASSES */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.borde-invalido {
+    border: 1px solid #ff0000;
+}
+
+/* PLACEHOLDER & EMPTY STATE STYLES */
+.no-productos, 
+.no-observaciones, 
+.no-promociones, 
+.no-descripcion {
+    color: #666;
+    font-style: italic;
+}
+
+/* LOADING INDICATORS */
+#loading-message .dots {
+    display: inline-block;
+}
+
+/* Agregar estos estilos al final del archivo styles.css o en components.css */
+/* filepath: c:\Users\USER\Desktop\python projects\Grupokossodo\assets\css\components.css */
+
+/* Estilos para el formulario responsivo */
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Centrar el título principal en la página de solicitud */
+.sistema-inventario h1 {
+    text-align: center;
+    margin-bottom: 1.5rem; /* Añadir un poco de espacio debajo del título */
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+/* Grid para los checkboxes */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.form-check:hover {
+    background-color: rgba(108, 185, 162, 0.05);
+}
+
+.form-check input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+.ejecutivo-label {
+    color: #6cb9a2;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Botón de enviar */
+#btnEnviarSolicitud {
+    padding: 12px 24px;
+    background-color: #3b4664;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+#btnEnviarSolicitud:hover {
+    background-color: #6cb9a2;
+}
+
+/* Media query para móviles */
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .checkbox-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilos para las categorías de productos */
+.product-category {
+    margin-bottom: 1.5rem; /* Espacio entre categorías */
+}
+
+.product-category h4 {
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #3b4664; /* Color del título de categoría */
+    border-bottom: 1px solid #eee; /* Línea separadora ligera */
+    padding-bottom: 0.4rem;
+}
+
+/* Mensaje cuando no hay productos en una categoría específica */
+.no-products-category {
+    font-style: italic;
+    color: #888;
+    padding: 10px 0;
+}
+
+/* Asegúrate que el grid funcione dentro de las categorías */
+.product-category .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+    /* No necesita margin-top aquí, ya que h4 tiene margin-bottom */
+}
+
+/* Ajustar el mensaje general de no productos */
+.no-products {
+     font-style: italic;
+     color: #e74c3c; /* Un color más notable para el mensaje general */
+     margin-top: 1rem;
+     text-align: center;
+     font-weight: 500;
+}

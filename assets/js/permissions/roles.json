@@ -1,0 +1,226 @@
+{
+  "roles": {
+    "administrador": {
+      "description": "Acceso completo al sistema",
+      "menuAccess": {
+        "Marketing": {
+          "access": true,
+          "children": {
+            "Inventario": {
+              "access": true,
+              "children": {
+                "Agregar/Consultar Inventario": {
+                  "access": true,
+                  "path": "../inventario/inventario.html"
+                }
+              }
+            },
+            "Merchandising": {
+              "access": true,
+              "children": {
+                "Solicitud de Merchandising": {
+                  "access": true,
+                  "path": "../Merchandising/solicitud.html"
+                },
+                "Confirmación Solicitudes": {
+                  "access": true,
+                  "path": "../Merchandising/confirmacion.html"
+                },
+                "Historial Confirmaciones": {
+                  "access": true,
+                  "path": "../Merchandising/visualizar.html"
+                }
+              }
+            }
+          }
+        },
+        "Ventas": {
+          "access": true,
+          "children": {
+            "Encuestas": {
+              "access": true,
+              "children": {
+                "Generador Encuestas": {
+                  "access": true,
+                  "path": "../feedback/encuesta.html"
+                },
+                "Registro Calificaciones": {
+                  "access": true,
+                  "path": "../feedback/califica.html"
+                }
+              }
+            }
+          }
+        },
+        "Seguimiento de Pedidos": {
+          "access": true,
+          "path": "../seguimiento/seguimiento.html"
+        },
+        "Bienestar de Talento": {
+          "access": true,
+          "path": "../Bienestar_talento/Bienestar.html"
+        }
+      }
+    },
+    "asesor": {
+      "description": "Acceso limitado a funciones de asesoría",
+      "menuAccess": {
+        "Marketing": {
+          "access": true,
+          "children": {
+            "Inventario": {
+              "access": false,
+              "children": {
+                "Agregar/Consultar Inventario": {
+                  "access": false
+                }
+              }
+            },
+            "Merchandising": {
+              "access": true,
+              "children": {
+                "Solicitud de Merchandising": {
+                  "access": true,
+                  "path": "../Merchandising/solicitud.html"
+                },
+                "Confirmación Solicitudes": {
+                  "access": false
+                },
+                "Historial Confirmaciones": {
+                  "access": false
+                }
+              }
+            }
+          }
+        },
+        "Ventas": {
+          "access": true,
+          "children": {
+            "Encuestas": {
+              "access": true,
+              "children": {
+                "Generador Encuestas": {
+                  "access": true,
+                  "path": "../feedback/encuesta.html"
+                },
+                "Registro Calificaciones": {
+                  "access": false
+                }
+              }
+            }
+          }
+        },
+        "Seguimiento de Pedidos": {
+          "access": true,
+          "path": "../seguimiento/seguimiento.html"
+        }
+      }
+    },
+    "recursos_humanos": {
+      "description": "Acceso a funciones de recursos humanos",
+      "menuAccess": {
+        "Marketing": {
+          "access": false,
+          "children": {
+            "Inventario": {
+              "access": false,
+              "children": {
+                "Agregar/Consultar Inventario": {
+                  "access": false
+                }
+              }
+            },
+            "Merchandising": {
+              "access": false,
+              "children": {
+                "Solicitud de Merchandising": {
+                  "access": false
+                },
+                "Confirmación Solicitudes": {
+                  "access": false
+                },
+                "Historial Confirmaciones": {
+                  "access": false
+                }
+              }
+            }
+          }
+        },
+        "Ventas": {
+          "access": true,
+          "children": {
+            "Encuestas": {
+              "access": true,
+              "children": {
+                "Generador Encuestas": {
+                  "access": true,
+                  "path": "../feedback/encuesta.html"
+                },
+                "Registro Calificaciones": {
+                  "access": true,
+                  "path": "../feedback/califica.html"
+                }
+              }
+            }
+          }
+        },
+        "Seguimiento de Pedidos": {
+          "access": false
+        }
+      }
+    },
+    "atencion": {
+      "description": "Acceso a funciones de atención al cliente",
+      "menuAccess": {
+        "Marketing": {
+          "access": false,
+          "children": {
+            "Inventario": {
+              "access": false,
+              "children": {
+                "Agregar/Consultar Inventario": {
+                  "access": false
+                }
+              }
+            },
+            "Merchandising": {
+              "access": true,
+              "children": {
+                "Solicitud de Merchandising": {
+                  "access": false
+                },
+                "Confirmación Solicitudes": {
+                  "access": false
+                },
+                "Historial Confirmaciones": {
+                  "access": true,
+                  "path": "../Merchandising/visualizar.html"
+                }
+              }
+            }
+          }
+        },
+        "Ventas": {
+          "access": false,
+          "children": {
+            "Encuestas": {
+              "access": false,
+              "children": {
+                "Generador Encuestas": {
+                  "access": false
+                },
+                "Registro Calificaciones": {
+                  "access": false
+                }
+              }
+            }
+          }
+        },
+        "Seguimiento de Pedidos": {
+          "access": true,
+          "path": "../seguimiento/seguimiento.html"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Confirmaciones - Dashboard</title>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/layout.css">
+    <link rel="stylesheet" href="../../css/components.css">
+</head>
+<body>
+    <div class="layout-container">
+        <!-- Header placeholder -->
+        <div id="headerContainer"></div>
+
+        <!-- Sidebar placeholder -->
+        <div id="sidebarContainer"></div>
+
+        <main class="main-content">
+            <div class="sistema-inventario">
+                <h1>Historial de Confirmaciones</h1>
+                
+                <div id="mainContent">
+                    <div class="table-wrapper">
+                        <table id="tablaConfirmaciones">
+                            <thead>
+                                <tr>
+                                    <th>Solicitud ID</th>
+                                    <th>Confirmador</th>
+                                    <th>Grupo</th>
+                                    <th>ID Solicitud Original</th>
+                                    <th>Solicitante</th>
+                                    <th>RUC</th>
+                                    <th>Fecha Visita</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Se llenará dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Contenedor para el modal de detalles -->
+                    <div id="modalDetalles" class="modal" style="display: none;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3>Detalles de Confirmación #<span id="modalSolicitudId"></span></h3>
+                                <span class="close-button" id="closeModalDetalles">&times;</span>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Observaciones</strong>
+                                    </div>
+                                    <div class="card-body" id="detallesObservaciones">
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Productos Confirmados</strong>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="productos-json" id="detallesProductos"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="btnCerrarModalDetalles">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="mensaje" class="mensaje"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load scripts in order -->
+    <script src="../../js/config.js"></script>
+    <script src="../../js/authCheck.js"></script>
+
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/loadSidebar.js"></script>
+    <script src="../../js/loadHeader.js"></script>
+    <script src="../../js/search.js"></script>
+    
+    <script>
+        const API_BASE_URL = 'https://inventario-kssd.onrender.com';
+
+        // Función para formatear los productos JSON
+        function formatProductos(productosJson) {
+            try {
+                const productos = JSON.parse(productosJson);
+                return Object.entries(productos)
+                    .map(([producto, cantidad]) => {
+                        const nombreProd = producto.replace(/^merch_/, '').replace(/_/g, ' ');
+                        return `<div class="producto-item">
+                            <strong>${nombreProd}:</strong> ${cantidad} unidades
+                        </div>`;
+                    })
+                    .join('');
+            } catch (e) {
+                console.error('Error parseando productos:', e);
+                return '<div class="no-productos">No hay productos registrados</div>';
+            }
+        }
+
+        // Función para mostrar el modal con observaciones y productos
+        function mostrarDetalles(solicitudId, observaciones, productos) {
+            document.getElementById('modalSolicitudId').textContent = solicitudId;
+            document.getElementById('detallesObservaciones').innerHTML = observaciones || 
+                '<div class="no-observaciones">Sin observaciones</div>';
+            document.getElementById('detallesProductos').innerHTML = formatProductos(productos);
+            document.getElementById('modalDetalles').style.display = 'block';
+        }
+
+        // Función para cerrar el modal de detalles
+        function cerrarModalDetalles() {
+            document.getElementById('modalDetalles').style.display = 'none';
+        }
+
+        document.getElementById('closeModalDetalles').addEventListener('click', cerrarModalDetalles);
+        document.getElementById('btnCerrarModalDetalles').addEventListener('click', cerrarModalDetalles);
+
+        // Función para formatear fecha
+        function formatearFecha(fecha) {
+            if (!fecha) return '-';
+            return new Date(fecha).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+        }
+
+        // Función para obtener todas las solicitudes de una vez
+        async function obtenerTodasLasSolicitudes() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/solicitudes`);
+                const data = await response.json();
+                return Array.isArray(data) ? data : [];
+            } catch (err) {
+                console.error('Error obteniendo todas las solicitudes:', err);
+                return [];
+            }
+        }
+
+        // Función para cargar las confirmaciones
+        async function cargarConfirmaciones() {
+            try {
+                // Obtener todas las confirmaciones y todas las solicitudes en paralelo
+                const [confirmacionesResponse, todasLasSolicitudes] = await Promise.all([
+                    fetch(`${API_BASE_URL}/api/confirmaciones`).then(r => r.json()),
+                    obtenerTodasLasSolicitudes()
+                ]);
+
+                if (!Array.isArray(confirmacionesResponse)) {
+                    throw new Error('La respuesta de confirmaciones no es un array');
+                }
+
+                // Crear un mapa de solicitudes por ID para acceso rápido
+                const solicitudesMap = new Map(
+                    todasLasSolicitudes.map(sol => [sol.id, sol])
+                );
+
+                const tbody = document.querySelector('#tablaConfirmaciones tbody');
+                tbody.innerHTML = '';
+
+                // Procesar cada confirmación
+                confirmacionesResponse.forEach(conf => {
+                    const solicitudOriginal = solicitudesMap.get(conf.solicitud_id);
+                    
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${conf.solicitud_id || '-'}</td>
+                        <td>${conf.confirmador || '-'}</td>
+                        <td>${conf.grupo || '-'}</td>
+                        <td>${solicitudOriginal?.id || '-'}</td>
+                        <td>${solicitudOriginal?.solicitante || '-'}</td>
+                        <td>${solicitudOriginal?.ruc || '-'}</td>
+                        <td>${formatearFecha(solicitudOriginal?.fecha_visita)}</td>
+                        <td>
+                            <button onclick='mostrarDetalles(${conf.solicitud_id}, 
+                            ${JSON.stringify(conf.observaciones || "")}, 
+                            ${JSON.stringify(conf.productos || "{}")})'>
+                                Más detalles
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            } catch (err) {
+                console.error('Error:', err);
+                document.getElementById('mensaje').innerHTML =
+                    `<div class="error-message">Error cargando confirmaciones: ${err.message}</div>`;
+            }
+        }
+
+        // Cargar datos al iniciar
+        window.addEventListener('load', cargarConfirmaciones);
+    </script>
+</body>
+</html>
