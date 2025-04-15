@@ -81,8 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             console.log("Flask session set successfully.");
             // Redirect to the main application page (Flask will handle routing)
-            window.location.href = '/'; 
-
+            window.location.href = '/welcome'; 
+            
         } catch (error) {
             console.error("Login failed:", error);
             errorMessage.textContent = error.message || 'Error durante el inicio de sesión.';
